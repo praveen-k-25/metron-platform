@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+::-webkit-scrollbar {
+  width: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Scrollbar width on hover */
+::-webkit-scrollbar:hover {
+  width: 8px;
+}
+
+/* Hide arrows/buttons */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  border: 1px solid #f1f1f1; /* creates padding effect */
+}
+
+/* Thumb hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Optional track hover */
+::-webkit-scrollbar-track:hover {
+  background: #e0e0e0;
+}
+
+/* 
+icon        -  #0a0a0a
+icon-dark   -  #fafafa
+*/
+
+:root {
+  --icon-gray: rgb(123, 127, 131);
+  --radius: 0.65rem; /* border radius */
+  --destructive: oklch(0.577 0.245 27.325);
+  --primary: oklch(48.78% 0.24331 264.421);
+  --sub-primary: #1449e679;
+  --input: #e5e5e5;
+  --background: #fff;
+  --primary-background: #ebe9e9;
+  --sec-background: #cacdf35a;
+  --button: #fff;
+  --button-primary: #e4e1e1;
+  --button-sec: #dad9d957;
+  --text: #0a0a0a;
+  --sub-text: #71717b;
+  --border: oklch(93.705% 0.00011 271.152); /* border color */
+  --box-shadow: #403f3fce;
+}
+
+.dark {
+  --radius: 0.65rem; /* border radius */
+  --destructive: oklch(62.826% 0.25721 28.495);
+  --primary: oklch(0.488 0.243 264.376);
+  --input: #aaa6a6;
+  --background: #0a0a0a;
+  --primary-background: #171717;
+  --sec-background: #cad2f35a;
+  --button: #252525;
+  --button-primary: #3c3c3c9a;
+  --button-sec: #3c3c3c2c;
+  --text: #fafafa;
+  --sub-text: #71717b;
+  --border: #252525;
+  --box-shadow: #bcbcbc86;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  -webkit-text-fill-color: #0a0a0a !important;
+}
+
+/* 🌙 Dark mode autofill override */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill,
+.dark select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #252525 inset !important; /* dark bg */
+  -webkit-text-fill-color: #fff !important; /* light text */
+}
+
+.leaflet-control-layers {
+  display: none !important;
+}

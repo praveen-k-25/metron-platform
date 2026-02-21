@@ -1,0 +1,92 @@
+/* HIDE the multi-value tags completely */
+.rs__multi-value {
+  display: none !important;
+}
+
+.rs__multi-value__label {
+  display: none !important;
+}
+
+.rs__multi-value__remove {
+  display: none !important;
+}
+
+/* --------------- REMOVE VERTICAL LINE --------------- */
+.rs__indicator-separator {
+  display: none !important;
+}
+
+/* Remove clear button (the X inside the input) */
+.rs__clear-indicator {
+  display: none !important;
+}
+
+/* --------------- MAIN SELECT BOX --------------- */
+.rs__control {
+  background: var(--button-primary) !important;
+  color: var(--text) !important;
+  border: none !important;
+  border-radius: 6px !important; /* increase radius */
+  height: 37px !important;
+  min-height: 37px !important;
+  max-height: 37px !important; /* height adjust */
+  padding: 0 10px !important; /* reduce internal space */
+  box-shadow: none !important;
+}
+
+/* When focused */
+.rs__control--is-focused {
+  border-color: none !important;
+  box-shadow: 0 0 1px 2px var(--box-shadow) !important;
+}
+
+/* --------------- REDUCE LEFT GAP of text --------------- */
+.rs__value-container {
+  padding: 0 !important; /* remove extra space */
+}
+
+/* --------------- PLACEHOLDER / SELECTED --------------- */
+.rs__placeholder,
+.rs__single-value {
+  margin-left: 4px !important;
+  font-size: 13px !important;
+  color: var(--text) !important;
+  font-weight: 400 !important;
+}
+
+/* --------------- DROPDOWN MENU --------------- */
+.rs__menu {
+  margin-top: 4px !important; /* reduce gap between box & menu */
+  border-radius: 7px !important;
+  background: var(--button) !important;
+  border: none !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+  padding: 1px 4px !important;
+}
+
+.rs__dropdown-indicator svg {
+  fill: var(--text) !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Options */
+.rs__option {
+  padding: 6px 6px !important;
+  border-radius: 5px !important;
+  margin-bottom: 2px !important;
+  font-size: 13px !important;
+  color: var(--text) !important;
+}
+
+/* Hover */
+.rs__option--is-focused {
+  background: var(--button-primary) !important;
+  color: var(--text) !important;
+}
+
+/* Selected */
+.rs__option--is-selected {
+  background: oklch(0.488 0.243 264.376) !important;
+  color: #fff !important;
+}

@@ -1,0 +1,112 @@
+.flatpickr-calendar {
+  border-radius: var(--radius);
+  border: 1px solid #c1c1c13b !important;
+  background-color: var(--button);
+  font-size: 10px;
+  box-shadow: none !important;
+  overflow: hidden;
+  width: 250px !important;
+  margin-top: 6px !important;
+}
+
+.flatpickr-days {
+  width: 250px !important;
+  max-width: 250px !important;
+}
+
+.dayContainer {
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
+  height: 210px !important;
+  min-height: 210px !important;
+  max-height: 210px !important;
+}
+
+.flatpickr-day {
+  width: 14.2857143% !important;
+  -webkit-flex-basis: 14.2857143% !important;
+  -ms-flex-preferred-size: 14.2857143% !important;
+  flex-basis: 14.2857143% !important;
+  max-width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  display: block !important;
+  cursor: pointer !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-right: 1px !important;
+}
+
+.flatpickr-a .flatpickr-months,
+.flatpickr-weekdays {
+  /* background-color: var(--primary); */
+  color: white !important;
+}
+
+/* Month title text */
+.flatpickr-current-month,
+.flatpickr-current-month span,
+.flatpickr-current-month input {
+  color: var(--text);
+}
+
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.prevMonthDay {
+  color: var(--sub-text);
+  opacity: 0.5;
+}
+
+/* Weekday names (Sun, Mon…) */
+.flatpickr-weekdaycontainer span.flatpickr-weekday {
+  color: var(--sub-text);
+}
+
+.flatpickr-day {
+  border: none;
+  border-radius: var(--radius);
+  margin: 2px !important;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.flatpickr-day:hover,
+.flatpickr-day.selected,
+.flatpickr-selected:hover {
+  background-color: var(--primary) !important;
+  color: white;
+}
+
+/* Remove all borders & shadows */
+.flatpickr-day.inRange,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  border: none !important;
+}
+
+/* Continuous color for in-between dates */
+.flatpickr-day.inRange {
+  background: var(--sec-background) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+}
+
+/* Start & end date styling */
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+  background: var(--primary) !important;
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.flatpickr-calendar .flatpickr-day.inRange,
+.flatpickr-calendar .flatpickr-day.prevMonthDay.inRange,
+.flatpickr-calendar .flatpickr-day.nextMonthDay.inRange {
+  box-shadow: none !important;
+}
+
+/* Month */
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+  stroke: var(--text) !important;
+}
