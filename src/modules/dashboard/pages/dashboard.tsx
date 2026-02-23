@@ -12,7 +12,6 @@ import ZoomControl from "../components/ZoomControl";
 import { selectAllVehicles, setMaps } from "../dashboard.slice";
 import { vehicleData } from "../dashboard.types";
 
-type focusedVehiclePolyline = [number, number][];
 type focusedVehicleType = vehicleData | null;
 
 const icon = (vehicle: vehicleData) =>
@@ -28,11 +27,13 @@ const icon = (vehicle: vehicleData) =>
       height:30px;   
     ">
     <svg fill="${
-      vehicle.status === 1
+      vehicle.status === 3
         ? "#0000FF"
         : vehicle.status === 2
           ? "#FFBB00"
-          : "#5B5B5B"
+          : vehicle.status === 1
+            ? "#5B5B5B"
+            : "#0b8700"
     }" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 640 640">
       <path d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2 298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6zM320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192 320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"/></svg>
     </div>`,
@@ -47,13 +48,10 @@ const Dashboard = () => {
   const map = useAppSelector((state) => state.dashboard.map);
   const vehicleStatus = useAppSelector(selectAllVehicles) as vehicleData[];
   const mapRef = useRef<L.Map>(null);
-  const polylineRef = useRef<L.Polyline>(null);
   const { theme } = useAppSelector((state) => state.auth);
 
   const [focusedVehicle, setFocusedVehicle] =
     useState<focusedVehicleType>(null);
-  const [focusedPolyline, setFocusedPolyline] =
-    useState<focusedVehiclePolyline>([]);
 
   // Vehicle Card States
   const [isVehicleCardOpen, setIsVehicleCardOpen] = useState(false);
@@ -64,49 +62,6 @@ const Dashboard = () => {
       setIsVehicleCardOpen(true);
     }, 1000);
   }, []);
-
-  /* useEffect(() => {
-    if (!mapRef.current) return;
-
-    // Initialize polyline once
-    if (!polylineRef.current) {
-      polylineRef.current = L.polyline([], {
-        color: "blue",
-        weight: 4,
-        opacity: 1,
-        lineCap: "round",
-        smoothFactor: 5,
-      }).addTo(mapRef.current);
-    }
-
-    // Only update when a vehicle is selected
-    if (focusedVehicle) {
-      focusedPolyline;
-      const newPoint: [number, number] = [
-        focusedVehicle.lat,
-        focusedVehicle.lng,
-      ];
-
-      // Append point only if it's new (avoid duplicate redraws)
-      setFocusedPolyline((prev) => {
-        const last = prev[prev.length - 1];
-        if (
-          !last ||
-          last[0] !== newPoint[0] ||
-          last[1] !== newPoint[1] ||
-          focusedVehicle.status === 3
-        ) {
-          polylineRef.current?.addLatLng(newPoint);
-          return [...prev, newPoint];
-        }
-        return prev;
-      });
-    } else {
-      // Reset when no vehicle selected
-      polylineRef.current?.setLatLngs([]);
-      setFocusedPolyline([]);
-    }
-  }, [focusedVehicle]); */
 
   useEffect(() => {
     if (focusedVehicle) {

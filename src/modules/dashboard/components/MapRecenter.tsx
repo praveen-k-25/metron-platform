@@ -1,8 +1,9 @@
-import { useEffect, type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import { useMap } from "react-leaflet";
 import recenter from "@/assets/svgs/recenter.svg";
 import recenter_dark from "@/assets/svgs/recenter-dark.svg";
 import { useSelector } from "react-redux";
+import * as L from "leaflet";
 
 interface props {
   vehicleStatus: any;
@@ -14,22 +15,28 @@ const MapRecenter: FC<props> = (props) => {
   const { vehicleStatus, focusedVehicle } = props;
   const map = useMap();
   const { theme } = useSelector((state: any) => state.auth);
+  const [vehicleDataCache, setVehicleDataCache] = useState();
 
   const handleCenter = () => {
+    if (vehicleStatus.length === 0) return;
     if (focusedVehicle) {
       map.flyTo([focusedVehicle.lat, focusedVehicle.lng], 18, {
         animate: true,
         duration: 1.0,
       });
-    } else {
-      let data = vehicleStatus.map((item: any) => [item.lat, item.lng]);
-      if (data.length > 0) {
-        map.flyToBounds(data, {
-          animate: true,
-          duration: 1.0,
-          maxZoom: 16,
-        });
-      }
+      return;
+    }
+
+    const coords = vehicleStatus.map((item: any) => [item.lat, item.lng]);
+    const bounds = L.latLngBounds(coords);
+
+    // prevent uncessary movements.
+    if (!map.getBounds().contains(bounds)) {
+      map.flyToBounds(bounds, {
+        animate: true,
+        duration: 1.0,
+        maxZoom: 16,
+      });
     }
   };
 

@@ -127,7 +127,7 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
         focusedVehicle.lng,
       ]);
       toast.success(`Distance: ${distance.toFixed(2)} meters`);
-      if (distance < 5) return;
+      if (distance < 8) return;
     }
 
     previousMapPosition.current = [focusedVehicle.lat, focusedVehicle.lng];
@@ -136,7 +136,7 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
     (markerRef.current as any)?.slideTo(
       [focusedVehicle.lat, focusedVehicle.lng],
       {
-        duration: 2500, // full 2.5 seconds
+        duration: 3500, // full 3.5 seconds
         keepAtCenter: false,
       },
     );
