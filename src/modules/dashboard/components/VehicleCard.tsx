@@ -183,22 +183,18 @@ const VehiclesList: FC<vehicleCardList> = React.memo(
                 ? "shadow-[0_0_2px_0_#9BB4F8] bg-[#001e6f]"
                 : vehicle.status === 2
                   ? "shadow-[0_0_2px_0_#EBD700] bg-[#b6a700]"
-                  : vehicle.status === 1
-                    ? "shadow-[0_0_2px_0_#5B5B5B] bg-[#464646]"
-                    : vehicle.status === 0
-                      ? "shadow-[0_0_4px_0_#e6000085] bg-[#cb0000]"
-                      : "shadow-[0_0_2px_0_#A5FF9D] bg-[#0b8700]"
+                  : vehicle.status === 0
+                    ? "shadow-[0_0_4px_0_#e6000085] bg-[#cb0000]"
+                    : "shadow-[0_0_2px_0_#5B5B5B] bg-[#464646]"
             }`}
           >
             {vehicle.status === 3
               ? "Moving"
               : vehicle.status === 2
                 ? "Idle"
-                : vehicle.status === 1
-                  ? "Inactive"
-                  : vehicle.status === 0
-                    ? "No Data"
-                    : "Parking"}
+                : vehicle.status === 0
+                  ? "No Data"
+                  : "Inactive"}
           </p>
         </section>
         <section className="text-[10px] flex justify-between items-center whitespace-nowrap">
