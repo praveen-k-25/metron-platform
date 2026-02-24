@@ -222,8 +222,8 @@ const Sidebar: FC = () => {
                   key={`sidebar-footer-${index}`}
                   className="relative rounded-md flex justify-start items-center gap-2 cursor-default"
                 >
-                  <div className="sticky left-0 min-w-8.5 min-h-8.5 rounded-full flex justify-center items-center border-none font-extrabold text-xl bg-green-500 text-(--text) capitalize">
-                    {user.username[0].toLowerCase()}
+                  <div className="sticky left-0 min-w-8.5 min-h-8.5 rounded-full flex justify-center items-center border-none font-semibold text-xl bg-fuchsia-800 text-(--text) capitalize">
+                    {user.username[0]}
                   </div>
                   <div className="flex-1 flex flex-col justify-center gap-0.5">
                     <span className="font-light text-sm text-(--text) z-0">
@@ -241,7 +241,7 @@ const Sidebar: FC = () => {
                   />
                   <button
                     onClick={handleLogout}
-                    className={`absolute -top-10 right-0 px-3 py-1 w-22.5 text-sm text-(--text) rounded-md hover:bg-(--button-primary) bg-(--button-sec) transition-all duration-300 ${showLogout ? "opacity-100 translate-0 z-10" : "opacity-0 -z-20 translate-y-2"} `}
+                    className={`absolute -top-10 right-0 px-3 py-1 w-22.5 text-sm text-(--text) rounded-md hover:bg-(--button-primary) bg-(--button-sec) transition-all duration-300 cursor-pointer ${showLogout ? "opacity-100 translate-0 z-10" : "opacity-0 -z-20 translate-y-2"} `}
                   >
                     Logout
                   </button>
@@ -282,6 +282,7 @@ const MobileSidebar: FC = () => {
   const [openDropdown, setOpenDropdown] = useState("");
   const [theme, setTheme] = useTheme();
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state: any) => state.auth);
 
   const handleTheme = useCallback(() => {
     if (theme === "dark") {
@@ -487,16 +488,16 @@ const MobileSidebar: FC = () => {
                 onClick={handleProfile}
                 className="relative min-w-8 min-h-8 rounded-full flex justify-center items-center border-none text-sm bg-fuchsia-800 text-white capitalize"
               >
-                {footer.title[0].toLowerCase()}
+                {user.username[0]}
                 <ul
-                  className={`fixed top-12 right-2.5 transition-transform duration-300 ease-in-out ${showProfileOptions ? "opacity-100 translate-0 z-9999 " : "opacity-0 -z-20 translate-y-2"} rounded-md bg-(--primary-background) w-30 flex flex-col gap-1 p-1`}
+                  className={`fixed top-12 right-2.5 transition-transform duration-300 ease-in-out ${showProfileOptions ? "opacity-100 translate-0 z-9999" : "opacity-0 -z-20 translate-y-2"} rounded-md bg-(--primary-background) w-30 flex flex-col gap-1 p-1`}
                 >
                   <li className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec) ">
                     Profile
                   </li>
                   <li
                     onClick={handleLogout}
-                    className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec)"
+                    className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec) cursor-pointer"
                   >
                     Logout
                   </li>

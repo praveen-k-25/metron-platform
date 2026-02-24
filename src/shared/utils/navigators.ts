@@ -38,27 +38,38 @@ export const sidebarMain = [
     submenu: true,
     submenuList: [
       {
-        title: "parking",
-        path: "/parking",
+        title: "Trip",
+        path: "/tripReport",
         submenu: false,
-        activeList: ["parking"],
+        activeList: ["tripReport"],
       },
       {
-        title: "playback",
-        path: "/playback",
+        title: "Idle",
+        path: "/idleReport",
         submenu: false,
-        activeList: ["playback"],
+        activeList: ["idleReport"],
       },
       {
-        title: "inactive",
-        path: "/inactive",
+        title: "Inactive",
+        path: "/inactiveReport",
         submenu: false,
-        activeList: ["inactive"],
+        activeList: ["inactiveReport"],
+      },
+      {
+        title: "Playback",
+        path: "/playbackReport",
+        submenu: false,
+        activeList: ["playbackReport"],
       },
     ],
-    activeList: ["/parking", "/playback", "/inactive"],
+    activeList: [
+      "/tripReport",
+      "/idleReport",
+      "/inactiveReport",
+      "/playbackReport",
+    ],
   },
-  {
+  /* {
     title: "tracking",
     path: "/tracking",
     icon: tracking,
@@ -94,7 +105,7 @@ export const sidebarMain = [
       },
     ],
     activeList: ["/call", "/mail", "/message"],
-  },
+  }, */
 ];
 
 export const sidebarFooter = [
