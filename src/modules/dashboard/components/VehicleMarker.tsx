@@ -17,6 +17,8 @@ interface SlideMarker extends L.Marker {
   ) => void;
 }
 
+type LatLngExpression = [number, number] | null;
+
 const VehicleMarker: FC<VehicleMarkerProps> = ({
   focusedVehicle,
   handleSelectedVehicle,
@@ -24,7 +26,7 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
   const map = useMap();
   const markerRef = useRef<SlideMarker | null>(null);
   const polylineRef = useRef<L.Polyline>(null);
-  const previousMapPosition = useRef<L.LatLngExpression | null>(null);
+  const previousMapPosition = useRef<LatLngExpression | null>(null);
 
   /* ------------ Zoom-based dynamic icon ------------*/
   const [zoomLevel, setZoomLevel] = useState(map.getZoom());
@@ -121,25 +123,33 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
   useEffect(() => {
     if (!markerRef.current) return;
 
-    if (previousMapPosition.current) {
-      let distance = map.distance(previousMapPosition.current, [
-        focusedVehicle.lat,
-        focusedVehicle.lng,
-      ]);
-      toast.success(`Distance: ${distance.toFixed(2)} meters`);
-      if (distance < 8) return;
+    if (!previousMapPosition.current) {
+      previousMapPosition.current = [focusedVehicle.lat, focusedVehicle.lng];
+      return;
     }
 
-    previousMapPosition.current = [focusedVehicle.lat, focusedVehicle.lng];
-    polylineRef?.current?.addLatLng([focusedVehicle.lat, focusedVehicle.lng]);
+    const start = previousMapPosition.current;
+    const end: [number, number] = [focusedVehicle.lat, focusedVehicle.lng];
 
-    (markerRef.current as any)?.slideTo(
-      [focusedVehicle.lat, focusedVehicle.lng],
-      {
-        duration: 3500, // full 3.5 seconds
-        keepAtCenter: false,
-      },
-    );
+    const duration = 5000; // same as update interval
+    const startTime = performance.now();
+
+    function animate(time: number) {
+      const progress = Math.min((time - startTime) / duration, 1);
+
+      const lat = start[0] + (end[0] - start[0]) * progress;
+      const lng = start[1] + (end[1] - start[1]) * progress;
+
+      markerRef.current?.setLatLng([lat, lng]);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        previousMapPosition.current = end;
+      }
+    }
+
+    requestAnimationFrame(animate);
   }, [focusedVehicle.lat, focusedVehicle.lng]);
 
   return null; // no React Marker component
