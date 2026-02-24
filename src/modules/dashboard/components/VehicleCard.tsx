@@ -180,7 +180,7 @@ const VehiclesList: FC<vehicleCardList> = React.memo(
           <p
             className={`p-1 rounded-md text-[10px] text-white flex gap-1.5 items-center px-2 font-semibold tracking-wider ${
               vehicle.status === 3
-                ? "shadow-[0_0_2px_0_#9BB4F8] bg-[#001e6f]"
+                ? "shadow-[0_0_2px_0_#9BB4F8] bg-[#0044ff]"
                 : vehicle.status === 2
                   ? "shadow-[0_0_2px_0_#EBD700] bg-[#b6a700]"
                   : vehicle.status === 0
