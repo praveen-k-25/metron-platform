@@ -230,7 +230,7 @@ const VehiclesList: FC<vehicleCardList> = React.memo(
             <div
               className={`transition-[width] duration-300 ease-in absolute z-10 inset-0 h-full bg-linear-to-r ${vehicle.status === 3 ? "from-indigo-400 from-10% via-sky-500 via-30% to-emerald-500 to-90%" : vehicle.status === 2 ? "from-gray-100 via-yellow-200 to-yellow-500" : "from-gray-100 via-gray-300 to-gray-600"}`}
               style={{
-                width: vehicle.status === 1 ? `${vehicle.speed}%` : "100%",
+                width: vehicle.status === 3 ? `${vehicle.speed}%` : "100%",
                 WebkitMaskImage: "linear-gradient(#000 0 0)", // fallback mask
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
