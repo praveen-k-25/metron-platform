@@ -28,9 +28,7 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
         ? "#0000FF"
         : focusedVehicle.status === 2
           ? "#FFBB00"
-          : focusedVehicle.status === 1
-            ? "#5B5B5B"
-            : "#0b8700";
+          : "#5B5B5B";
 
     return L.divIcon({
       className: "plane-icon",
@@ -102,19 +100,17 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
 
   /* -------------- Update icon if zoom/status changes --------------*/
   useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current.setIcon(icon);
-    }
+    if (markerRef.current) markerRef.current.setIcon(icon);
   }, [icon]);
 
   /* ------------- Smooth movement ----------*/
   useEffect(() => {
     if (!markerRef.current) return;
-
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
+    if (focusedVehicle.status !== 3) {
+      markerRef.current?.setLatLng([focusedVehicle.lat, focusedVehicle.lng]);
+      return;
     }
-
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
     if (!previousMapPosition.current) {
       const initial: [number, number] = [
         focusedVehicle.lat,
@@ -159,7 +155,6 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
         frameRef.current = 0;
       }
     }
-
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {

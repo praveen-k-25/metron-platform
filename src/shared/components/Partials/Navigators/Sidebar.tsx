@@ -402,7 +402,7 @@ const MobileSidebar: FC = () => {
                             e.stopPropagation();
                             handleRoute(menu.path);
                           }}
-                          key={`menu-${index}`}
+                          key={`mobile-sidebar-menu-${index}`}
                           className={`w-full flex gap-2 rounded-md my-1 p-1 cursor-default transition-colors duration-150 ${
                             pathname === menu.path
                               ? "bg-(--button-primary)"
@@ -423,7 +423,7 @@ const MobileSidebar: FC = () => {
                     return (
                       <li
                         onClick={() => handleDropdown(menu.title)}
-                        key={`menu-${index}`}
+                        key={`mobile-sidebar-menu-${index}`}
                         className="flex flex-col w-full"
                       >
                         <section
@@ -457,7 +457,7 @@ const MobileSidebar: FC = () => {
                             {menu.submenuList.map(
                               (submenu: any, index: number) => (
                                 <li
-                                  key={`submenu-${index}`}
+                                  key={`mobile-sidebar-submenu-${index}`}
                                   onClick={() => handleRoute(submenu.path)}
                                   className={`p-1 pl-3 rounded-md my-1 cursor-default text-(--text) text-sm font-normal capitalize transition-colors duration-150 ${
                                     pathname === submenu.path
@@ -492,10 +492,14 @@ const MobileSidebar: FC = () => {
                 <ul
                   className={`fixed top-12 right-2.5 transition-transform duration-300 ease-in-out ${showProfileOptions ? "opacity-100 translate-0 z-9999" : "opacity-0 -z-20 translate-y-2"} rounded-md bg-(--primary-background) w-30 flex flex-col gap-1 p-1`}
                 >
-                  <li className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec) ">
+                  <li
+                    key="profile"
+                    className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec) "
+                  >
                     Profile
                   </li>
                   <li
+                    key="logout"
                     onClick={handleLogout}
                     className="text-(--text) text-center py-1 rounded-md hover:bg-(--button-primary) bg-(--button-sec) cursor-pointer"
                   >

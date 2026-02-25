@@ -80,6 +80,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     focusedVehicle && vehicleById && setFocusedVehicle(vehicleById);
+    console.log(vehicleById);
   }, [vehicleStatus]);
 
   const handleSelectedVehicle = useCallback(
@@ -146,7 +147,7 @@ const Dashboard = () => {
               (item: any) =>
                 item.status !== 0 && (
                   <Marker
-                    key={item.user}
+                    key={`marker-${item.user}`}
                     position={[item.lat, item.lng]}
                     icon={icon(item)}
                     eventHandlers={{

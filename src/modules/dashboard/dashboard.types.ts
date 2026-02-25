@@ -1,3 +1,5 @@
+export type focusedVehicleType = vehicleData | null;
+
 export interface vehicleData {
   id: string;
   timestamp: string;
@@ -34,5 +36,5 @@ export type LatLngExpression = [number, number] | null;
 
 export interface mapCenterProps {
   vehicleStatus: vehicleData[];
-  focusedVehicle: vehicleData;
+  focusedVehicle: focusedVehicleType;
 }
