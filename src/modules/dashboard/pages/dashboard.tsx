@@ -85,8 +85,8 @@ const Dashboard = () => {
 
   const handleSelectedVehicle = useCallback(
     (data: focusedVehicleType) => {
-      if (!data || data.status === 0) return;
       setFocusedVehicle(data);
+      if (!data || data.status === 0) return;
       setFocusedVehicleId(data.id);
     },
     [setFocusedVehicle],
