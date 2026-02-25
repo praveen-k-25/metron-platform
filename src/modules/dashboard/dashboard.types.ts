@@ -20,3 +20,19 @@ export interface vehicleCardProps {
 export interface maplayersProps {
   handleLayers: (layer: string) => void;
 }
+
+// ----- Vehicle Marker Types -----------------------------------------------
+
+export interface VehicleMarkerProps {
+  focusedVehicle: vehicleData;
+  handleSelectedVehicle: (data: vehicleData | null) => void;
+}
+
+export type LatLngExpression = [number, number] | null;
+
+// ----- Map recenter Types --------------------------------------------------
+
+export interface mapCenterProps {
+  vehicleStatus: vehicleData[];
+  focusedVehicle: vehicleData;
+}

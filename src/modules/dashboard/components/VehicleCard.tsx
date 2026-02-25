@@ -1,5 +1,6 @@
 import dropdown_dark from "@/assets/svgs/dropdown-dark.svg";
 import dropdown from "@/assets/svgs/dropdown.svg";
+import useDebounce from "@/shared/Functions/useBebounce";
 import { useAppSelector } from "@/store/hooks";
 import {
   Navigation,
@@ -10,10 +11,9 @@ import {
 } from "lucide-react";
 import type { FC } from "react";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { selectAllVehicles } from "../dashboard.slice";
 import { vehicleCardProps, vehicleData } from "../dashboard.types";
-import useDebounce from "@/shared/Functions/useBebounce";
 
 interface vehicleCardList {
   vehicle: vehicleData;

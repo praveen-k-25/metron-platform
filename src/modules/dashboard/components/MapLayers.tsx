@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import layers from "@/assets/svgs/layers.svg";
-import layersDark from "@/assets/svgs/layers-dark.svg";
-import { useEffect, useRef, useState, type FC } from "react";
-import street from "@/assets/pngs/street.png";
-import osm from "@/assets/pngs/osm.png";
 import hybrid from "@/assets/pngs/hybrid.png";
+import osm from "@/assets/pngs/osm.png";
+import street from "@/assets/pngs/street.png";
+import layersDark from "@/assets/svgs/layers-dark.svg";
+import layers from "@/assets/svgs/layers.svg";
+import { useEffect, useRef, useState, type FC } from "react";
+import { useSelector } from "react-redux";
 import { maplayersProps } from "../dashboard.types";
 
 const MapLayers: FC<maplayersProps> = (props) => {

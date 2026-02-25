@@ -1,31 +1,19 @@
-import { useEffect, useMemo, useRef, useState, type FC } from "react";
-import { useMap } from "react-leaflet";
 import * as L from "leaflet";
 import "leaflet.marker.slideto";
-import { vehicleData } from "../dashboard.types";
-import toast from "react-hot-toast";
-
-interface VehicleMarkerProps {
-  focusedVehicle: vehicleData;
-  handleSelectedVehicle: (data: vehicleData | null) => void;
-}
-
-interface SlideMarker extends L.Marker {
-  slideTo?: (
-    latlng: L.LatLngExpression,
-    options?: { duration?: number; keepAtCenter?: boolean },
-  ) => void;
-}
-
-type LatLngExpression = [number, number] | null;
+import { useEffect, useMemo, useRef, useState, type FC } from "react";
+import { useMap } from "react-leaflet";
+import { LatLngExpression, VehicleMarkerProps } from "../dashboard.types";
 
 const VehicleMarker: FC<VehicleMarkerProps> = ({
   focusedVehicle,
   handleSelectedVehicle,
 }) => {
   const map = useMap();
-  const markerRef = useRef<SlideMarker | null>(null);
+  const markerRef = useRef<L.Marker | null>(null);
   const polylineRef = useRef<L.Polyline>(null);
+  const animationRef = useRef<number | null>(null);
+  const animatedPathRef = useRef<[number, number][]>([]);
+  const frameRef = useRef(0);
   const previousMapPosition = useRef<LatLngExpression | null>(null);
 
   /* ------------ Zoom-based dynamic icon ------------*/
@@ -88,7 +76,7 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
     if (!polylineRef.current) {
       polylineRef.current = L.polyline([], {
         color: "blue",
-        weight: 4,
+        weight: 5,
         opacity: 1,
         lineCap: "round",
       }).addTo(map);
@@ -123,33 +111,60 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
   useEffect(() => {
     if (!markerRef.current) return;
 
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+
     if (!previousMapPosition.current) {
-      previousMapPosition.current = [focusedVehicle.lat, focusedVehicle.lng];
+      const initial: [number, number] = [
+        focusedVehicle.lat,
+        focusedVehicle.lng,
+      ];
+
+      previousMapPosition.current = initial;
+      animatedPathRef.current = [initial]; // 🔥 initialize path
+      polylineRef.current?.setLatLngs(animatedPathRef.current);
       return;
     }
 
     const start = previousMapPosition.current;
     const end: [number, number] = [focusedVehicle.lat, focusedVehicle.lng];
 
-    const duration = 5000; // same as update interval
+    const duration = 3800; // same as update interval
     const startTime = performance.now();
 
     function animate(time: number) {
-      const progress = Math.min((time - startTime) / duration, 1);
+      frameRef.current++;
+      const progress: number = Math.min((time - startTime) / duration, 1);
 
       const lat = start[0] + (end[0] - start[0]) * progress;
       const lng = start[1] + (end[1] - start[1]) * progress;
+      const newPosition: [number, number] = [lat, lng];
 
-      markerRef.current?.setLatLng([lat, lng]);
+      // Moke marker position
+
+      if (frameRef.current % 10 === 0) {
+        markerRef.current?.setLatLng(newPosition);
+        animatedPathRef.current.push(newPosition);
+        if (animatedPathRef.current.length > 2000) {
+          animatedPathRef.current = animatedPathRef.current.slice(-500);
+        }
+        polylineRef.current?.setLatLngs(animatedPathRef.current);
+      }
 
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
         previousMapPosition.current = end;
+        frameRef.current = 0;
       }
     }
 
-    requestAnimationFrame(animate);
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      animationRef.current && cancelAnimationFrame(animationRef.current);
+    };
   }, [focusedVehicle.lat, focusedVehicle.lng]);
 
   return null; // no React Marker component

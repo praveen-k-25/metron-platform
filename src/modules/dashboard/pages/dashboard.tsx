@@ -9,8 +9,13 @@ import MapRecenter from "../components/MapRecenter";
 import VehicleCard from "../components/VehicleCard";
 import VehicleMarker from "../components/VehicleMarker";
 import ZoomControl from "../components/ZoomControl";
-import { selectAllVehicles, setMaps } from "../dashboard.slice";
+import {
+  selectAllVehicles,
+  selectVehiclesById,
+  setMaps,
+} from "../dashboard.slice";
 import { vehicleData } from "../dashboard.types";
+//import { demo_data } from "@/shared/constant";
 
 type focusedVehicleType = vehicleData | null;
 
@@ -46,39 +51,42 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
   const LoggedInUser = useAppSelector((state) => state.auth.user);
   const map = useAppSelector((state) => state.dashboard.map);
-  const vehicleStatus = useAppSelector(selectAllVehicles) as vehicleData[];
+  const vehicleStatus = useAppSelector(selectAllVehicles);
   const mapRef = useRef<L.Map>(null);
   const { theme } = useAppSelector((state) => state.auth);
 
   const [focusedVehicle, setFocusedVehicle] =
     useState<focusedVehicleType>(null);
+  const [focusedVehicleId, setFocusedVehicleId] = useState<string | null>(null);
+  const vehicleById = useAppSelector((state) =>
+    focusedVehicleId ? selectVehiclesById(state, focusedVehicleId) : null,
+  );
 
   // Vehicle Card States
   const [isVehicleCardOpen, setIsVehicleCardOpen] = useState(false);
 
   useEffect(() => {
     userTracker(LoggedInUser);
+    /* demo_data.forEach((item: any, index: number) => {
+      setTimeout(() => {
+        dispatch(upsertVehicle(item));
+      }, index * 4000);
+    }); */
+
     setTimeout(() => {
       setIsVehicleCardOpen(true);
     }, 1000);
   }, []);
 
   useEffect(() => {
-    if (focusedVehicle) {
-      let vehicle = vehicleStatus.find(
-        (item: vehicleData) => item.id === focusedVehicle.id,
-      );
-
-      if (vehicle) {
-        setFocusedVehicle(vehicle);
-      }
-    }
+    focusedVehicle && vehicleById && setFocusedVehicle(vehicleById);
   }, [vehicleStatus]);
 
   const handleSelectedVehicle = useCallback(
     (data: focusedVehicleType) => {
-      if (data?.status === 0) return;
+      if (!data || data.status === 0) return;
       setFocusedVehicle(data);
+      setFocusedVehicleId(data.id);
     },
     [setFocusedVehicle],
   );
@@ -100,6 +108,7 @@ const Dashboard = () => {
         />
         <MapContainer
           ref={mapRef}
+          preferCanvas={true}
           center={[11.037062, 77.036487]} //{[12.9716, 77.5946]}
           zoom={15}
           zoomControl={false}

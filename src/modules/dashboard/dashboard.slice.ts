@@ -1,3 +1,4 @@
+import { RootState } from "@/store/store";
 import {
   createAsyncThunk,
   createEntityAdapter,
@@ -5,9 +6,9 @@ import {
   EntityState,
 } from "@reduxjs/toolkit";
 import { handleDashboardVehicles } from "./dashboard.api";
-import { RootState } from "@/store/store";
+import { vehicleData } from "./dashboard.types";
 
-interface Vehicle {
+interface Vehicle extends vehicleData {
   id: string;
   username: string;
 }
