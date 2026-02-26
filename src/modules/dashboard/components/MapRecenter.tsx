@@ -29,7 +29,7 @@ const MapRecenter: FC<mapCenterProps> = (props) => {
       const swPoint = map.latLngToContainerPoint(southWest);
 
       // Create margin (in pixels)
-      const margin = 5;
+      const margin = 10;
 
       // Define safe zone in pixels
       const safeTopLeft = L.point(swPoint.x + margin, nePoint.y + margin);
