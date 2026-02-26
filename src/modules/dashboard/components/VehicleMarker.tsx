@@ -139,11 +139,11 @@ const VehicleMarker: FC<VehicleMarkerProps> = ({
 
       // Moke marker position
 
-      if (frameRef.current % 10 === 0) {
+      if (frameRef.current % 15 === 0) {
         markerRef.current?.setLatLng(newPosition);
         animatedPathRef.current.push(newPosition);
-        if (animatedPathRef.current.length > 2000) {
-          animatedPathRef.current = animatedPathRef.current.slice(-500);
+        if (animatedPathRef.current.length > 10000) {
+          animatedPathRef.current = animatedPathRef.current.slice(-1000);
         }
         polylineRef.current?.setLatLngs(animatedPathRef.current);
       }
