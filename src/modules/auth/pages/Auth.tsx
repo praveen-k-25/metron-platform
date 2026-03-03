@@ -6,7 +6,8 @@ import { useAppDispatch } from "@/store/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { setSliceTheme } from "../auth.slices";
 import Login from "../components/Login";
-import Register from "../components/Register";
+import Register from "../components/Register"; 
+//comments
 
 const Auth = () => {
   const dispatch = useAppDispatch();
