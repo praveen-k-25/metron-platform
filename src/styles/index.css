@@ -2,13 +2,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
+  height: 8px;
   transition: width 0.3s ease;
 }
 
 /* Scrollbar width on hover */
 ::-webkit-scrollbar:hover {
   width: 8px;
+  height: 8px;
 }
 
 /* Hide arrows/buttons */
@@ -20,18 +22,25 @@
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 /* Thumb */
 ::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
-  border: 1px solid #f1f1f1; /* creates padding effect */
+  border: 2px solid #f1f1f1; /* creates padding effect */
 }
 
 /* Thumb hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+  border: 1px solid #f1f1f1;
+  cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
 }
 
 /* Optional track hover */
@@ -60,7 +69,23 @@ icon-dark   -  #fafafa
   --text: #0a0a0a;
   --sub-text: #71717b;
   --border: oklch(93.705% 0.00011 271.152); /* border color */
+
+  /* Report Style */
   --box-shadow: #403f3fce;
+  --report-bg: #f6f6f6;
+  --report-sec-bg: #e0e0e0b7;
+  --report-hover: #e0e0e0;
+  --report-hover-data: #e0e0e050;
+  --report-text: #363636;
+  --report-border: #444444ba;
+  --report-shadow: #5e5e5ea9;
+  --report-row-border: #b3b3b372;
+
+  /* input select Style */
+  --option-selected: #2563eb;
+  --option-hover: #dbdbdbb0;
+  --option-bg: #f7f7f7;
+  --option-text: #363636;
 }
 
 .dark {
@@ -78,6 +103,23 @@ icon-dark   -  #fafafa
   --sub-text: #71717b;
   --border: #252525;
   --box-shadow: #bcbcbc86;
+  --box-shadow: #dbdbdbb0;
+
+  /* Report Style */
+  --report-bg: #181818;
+  --report-sec-bg: #494949b7;
+  --report-hover: #494949;
+  --report-hover-data: #49494950;
+  --report-text: #dedede;
+  --report-border: #aeaeaeb3;
+  --report-shadow: #dcdcdc;
+  --report-row-border: rgba(90, 90, 90, 0.446);
+
+  /* input select Style */
+  --option-selected: #2563eb;
+  --option-hover: #3b3b3b;
+  --option-bg: #2c2c2c;
+  --option-text: #fff;
 }
 
 input:-webkit-autofill,
@@ -101,4 +143,56 @@ select:-webkit-autofill {
 
 .leaflet-control-layers {
   display: none !important;
+}
+
+/* Flatpickr CSS */
+
+/* Calendar container */
+.flatpickr-calendar {
+  border-radius: 12px !important;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: inherit;
+}
+
+/* Header */
+.flatpickr-months {
+  background: #2370ed;
+  border-radius: 12px 12px 0 0;
+}
+
+.flatpickr-monthDropdown-month {
+  color: black !important;
+}
+
+.flatpickr-current-month,
+.numInputWrapper span,
+.flatpickr-monthDropdown-month.selected {
+  color: white !important;
+}
+
+/* Weekdays */
+.flatpickr-weekdays {
+  background: #2370ed !important;
+}
+
+.flatpickr-weekday {
+  color: white !important;
+  font-weight: 500;
+}
+
+/* Days */
+.flatpickr-day {
+  border-radius: 8px !important;
+}
+
+.flatpickr-day:hover {
+  background: #dbeafe;
+}
+
+.flatpickr-day.selected {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: white !important;
+  border-radius: 8px !important;
 }

@@ -12,6 +12,7 @@ import NotFound from "@/shared/pages/NotFound";
 import { FC } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
+import "flatpickr/dist/flatpickr.css";
 
 const App: FC = () => {
   const [] = useTheme();

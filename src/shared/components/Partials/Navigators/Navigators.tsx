@@ -11,7 +11,7 @@ const Navigator = () => {
   }, []);
 
   return (
-    <div className="w-dvw h-dvh md:w-screen md:h-screen flex flex-col sm:flex-row bg-[--background] overflow-y-auto">
+    <div className="w-dvw h-dvh md:w-screen md:h-screen flex flex-col sm:flex-row bg-[--background] overflow-hidden">
       <div className="hidden sm:block sticky top-0 h-full">
         <DesktopSidebarNavigator />
       </div>
