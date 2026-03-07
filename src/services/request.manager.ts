@@ -17,7 +17,13 @@ async function apiRequest<T>(
     url,
     data,
   };
-  return (await metronApi(config)) as T;
+
+  try {
+    const response = await metronApi(config);
+    return response.data as T;
+  } catch (error: any) {
+    return Promise.reject(error);
+  }
 }
 
 export default apiRequest;

@@ -21,10 +21,11 @@ metronApi.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // atach abort controller to the request
     attachAbortController(config);
-
     return config;
   },
-  (error: AxiosError) => Promise.reject(handleError(error)),
+  (error: AxiosError) => {
+    Promise.reject(handleError(error));
+  },
 );
 
 metronApi.interceptors.response.use(

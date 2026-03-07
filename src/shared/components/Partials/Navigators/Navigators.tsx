@@ -18,7 +18,7 @@ const Navigator = () => {
       <div className="block sm:hidden relative">
         <MobileSidebarNavigator />
       </div>
-      <div className="w-screen h-screen bg-(--background) relative">
+      <div className="w-full h-full overflow-hidden bg-(--background) relative ">
         <Suspense
           fallback={
             <div className="w-full h-full flex justify-center items-center">

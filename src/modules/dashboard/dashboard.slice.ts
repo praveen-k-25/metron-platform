@@ -29,7 +29,7 @@ export const fetchVehicles = createAsyncThunk(
   "vehicle/fetchVehicles",
   async () => {
     const response = await handleDashboardVehicles();
-    return response.data.data;
+    return response.data;
   },
 );
 

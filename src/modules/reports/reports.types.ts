@@ -3,23 +3,49 @@ export type options = {
   value: number;
 };
 
-type vehicle = {
+export type vehicle = {
   label: string;
-  value: string | number;
+  value: string;
 };
 
 export interface reportForm {
   vehicle: vehicle;
   startDate: Date;
   endDate: Date;
+  page: number;
+  rows: number;
 }
 
 export interface BasicFormProps {
+  reportForm: any;
   activeMobileForm: boolean;
   handleMobileFormActiveState: () => void;
-  handleFormSubmit: (data: reportForm) => void;
+  handleFormSubmit: (data: any) => void;
 }
 
 export interface tableHeader {
   label: string;
+}
+
+export interface vehicleListResponse {
+  success: boolean;
+  message: string;
+  data: vehicle[];
+}
+
+export interface tripReportData {
+  vehicleName: string;
+  startTrip: string;
+  endTrip: string;
+  startLocation: { lat: number; lng: number };
+  endLocation: { lat: number; lng: number };
+  duration: string;
+}
+
+export interface idleReportData {
+  vehicleName: string;
+  idleStart: string;
+  idleEnd: string;
+  location: { lat: number; lng: number };
+  duration: string;
 }

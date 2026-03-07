@@ -80,7 +80,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     focusedVehicle && vehicleById && setFocusedVehicle(vehicleById);
-    console.log(vehicleById);
   }, [vehicleStatus]);
 
   const handleSelectedVehicle = useCallback(

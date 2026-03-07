@@ -82,7 +82,7 @@ icon-dark   -  #fafafa
   --report-row-border: #b3b3b372;
 
   /* input select Style */
-  --option-selected: #2563eb;
+  --option-selected: #a7bff3;
   --option-hover: #dbdbdbb0;
   --option-bg: #f7f7f7;
   --option-text: #363636;
@@ -116,7 +116,7 @@ icon-dark   -  #fafafa
   --report-row-border: rgba(90, 90, 90, 0.446);
 
   /* input select Style */
-  --option-selected: #2563eb;
+  --option-selected: #a7bff3;
   --option-hover: #3b3b3b;
   --option-bg: #2c2c2c;
   --option-text: #fff;
