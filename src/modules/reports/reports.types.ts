@@ -46,6 +46,15 @@ export interface idleReportData {
   vehicleName: string;
   idleStart: string;
   idleEnd: string;
-  location: { lat: number; lng: number };
+  location: [number, number];
+  duration: string;
+}
+
+export interface inactiveReportData {
+  vehicleName: string;
+  inactiveStart: string;
+  inactiveEnd: string;
+  inactiveStartLocation: [number, number];
+  inactiveEndLocation: [number, number];
   duration: string;
 }

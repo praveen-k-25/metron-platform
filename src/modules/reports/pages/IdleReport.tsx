@@ -8,7 +8,7 @@ import {
   reportForm,
   tableHeader,
 } from "../reports.types";
-import { getTripReport } from "../reports.api";
+import { getIdleReport } from "../reports.api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -110,7 +110,7 @@ const schema = yup.object({
     .required("select is required"),
 });
 
-const TripReport = () => {
+const IdleReport = () => {
   const [activeMobileForm, setMobileFormActive] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [rowsperpage, setRowsPerPage] = useState<options>(tableOptions[0]);
@@ -157,7 +157,7 @@ const TripReport = () => {
     };
     try {
       setLoading(true);
-      const response = await getTripReport(customPayload);
+      const response = await getIdleReport(customPayload);
       setIdleData(response.data);
       setIdleDataCount(response.totalCount);
     } catch (error: any) {
@@ -186,7 +186,7 @@ const TripReport = () => {
           id="report-header"
           className="flex justify-between items-center"
         >
-          <h2 className="text-xl font-semibold px-3 ">Trip Report</h2>
+          <h2 className="text-xl font-semibold px-3 ">Idle Report</h2>
           <button
             onClick={handleMobileFormActiveState}
             className="sm:hidden p-1.5 px-2 border border-(--report-border) rounded-md shadow-[0_0_2px_0px_(--report-shadow)] cursor-pointer"
@@ -331,4 +331,4 @@ const TripReport = () => {
   );
 };
 
-export default TripReport;
+export default IdleReport;
