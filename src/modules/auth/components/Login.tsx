@@ -82,7 +82,7 @@ const Login: FC<loginComponentProps> = (props) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: any) {
       const { cause } = error;
-      if (cause === null) return;
+      if (!cause) return;
       if (cause.includes("password")) {
         setError("password", {
           type: "manual",

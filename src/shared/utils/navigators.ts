@@ -55,18 +55,18 @@ export const sidebarMain = [
         submenu: false,
         activeList: ["inactiveReport"],
       },
-      {
+      /* {
         title: "Playback",
         path: "/playbackReport",
         submenu: false,
         activeList: ["playbackReport"],
-      },
+      }, */
     ],
     activeList: [
       "/tripReport",
       "/idleReport",
       "/inactiveReport",
-      "/playbackReport",
+      /* "/playbackReport", */
     ],
   },
   /* {

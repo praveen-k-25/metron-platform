@@ -22,7 +22,7 @@ async function apiRequest<T>(
     const response = await metronApi(config);
     return response.data as T;
   } catch (error: any) {
-    return Promise.reject(error);
+    return Promise.reject(error.response.data);
   }
 }
 
