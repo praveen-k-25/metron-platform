@@ -129,6 +129,7 @@ const IdleReport = () => {
   };
 
   const handleFormSubmit = async (data: any) => {
+    console.log("enter");
     const payload = {
       page: page,
       rows: rowsperpage.value,
@@ -138,7 +139,17 @@ const IdleReport = () => {
     };
     setPayload(payload);
     setMobileFormActive(false);
-    handleIdleReport();
+
+    try {
+      setLoading(true);
+      const response = await getIdleReport(payload);
+      setIdleData(response.data);
+      setIdleDataCount(response.totalCount);
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleIdleReport = async (

@@ -138,7 +138,17 @@ const InactiveReport = () => {
     };
     setPayload(payload);
     setMobileFormActive(false);
-    handleInactiveReport();
+
+    try {
+      setLoading(true);
+      const response = await getInactiveReport(payload);
+      setInactiveData(response.data);
+      setInactiveDataCount(response.totalCount);
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInactiveReport = async (

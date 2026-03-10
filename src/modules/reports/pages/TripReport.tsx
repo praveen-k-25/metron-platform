@@ -138,7 +138,17 @@ const TripReport = () => {
     };
     setPayload(payload);
     setMobileFormActive(false);
-    handleTripReport();
+
+    try {
+      setLoading(true);
+      const response = await getTripReport(payload);
+      setTripData(response.data);
+      setTripDataCount(response.totalCount);
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleTripReport = async (
@@ -169,10 +179,10 @@ const TripReport = () => {
 
   const renderLoaderRows = useCallback(() => {
     return Array.from({ length: rowsperpage.value }).map((_, index) => (
-      <tr key={index} className="animate-pulse h-14">
+      <tr key={index} className="animate-pulse h-5">
         {tableHeaders.map((_, i) => (
-          <td key={i} className="p-3">
-            <div className="h-4 px-2 rounded bg-slate-200"></div>
+          <td key={i} className="px-3 p-2.75">
+            <div className="h-2 px-2 rounded-full bg-slate-200"></div>
           </td>
         ))}
       </tr>
