@@ -1,84 +1,86 @@
-# Metron - Platform
+# Vehicle GPS Tracking System
 
-src/
-│
-├── app/ # App core setup
-│ ├── store.ts # Redux store
-│ ├── rootReducer.ts
-│ ├── providers.tsx # Redux + Persist + Router wrapper
-│ ├── router.tsx # Central routing
-│ └── hooks.ts # typed redux hooks
-│
-├── features/ # Business modules (feature-based)
-│ ├── auth/
-│ │ ├── pages/
-│ │ ├── components/
-│ │ ├── validation/
-│ │ ├── authSlice.ts
-│ │ └── auth.api.ts
-│ │
-│ ├── dashboard/
-│ │ ├── pages/
-│ │ ├── components/
-│ │ └── dashboardSlice.ts
-│ │
-│ ├── vehicles/
-│ │ ├── pages/
-│ │ ├── components/
-│ │ ├── vehiclesSlice.ts
-│ │ └── vehicles.api.ts
-│ │
-│ ├── tracking/
-│ │ ├── pages/
-│ │ ├── components/
-│ │ ├── map/
-│ │ ├── trackingSlice.ts
-│ │ └── useTrackingSocket.ts
-│ │
-│ └── analytics/
-│ ├── pages/
-│ ├── components/
-│ └── analyticsSlice.ts
-│
-├── services/ # API layer
-│ ├── api.ts # Axios base config
-│ ├── interceptors.ts
-│ └── endpoints.ts
-│
-├── mqtt/ # Real-time layer
-│ ├── mqttClient.ts
-│ ├── mqttMiddleware.ts # Redux integration
-│ └── topics.ts
-│
-├── shared/ # Reusable global UI
-│ ├── components/
-│ │ ├── ui/ # Pure UI (Button, Card)
-│ │ ├── form/ # Input, Select, DatePicker
-│ │ └── layout/ # Header, Sidebar
-│ │
-│ ├── hooks/
-│ ├── utils/
-│ ├── constants/
-│ └── types/
-│
-├── layouts/ # Page layouts
-│ ├── DashboardLayout.tsx
-│ └── AuthLayout.tsx
-│
-├── routes/
-│ ├── ProtectedRoute.tsx
-│ └── PublicRoute.tsx
-│
-├── styles/ # Tailwind & global styles
-│ ├── index.css # Tailwind imports
-│ ├── variables.css
-│ └── animations.css
-│
-├── assets/
-│ ├── images/
-│ └── styles/
-│
-├── config/
-│ └── env.ts
-│
-└── main.tsx
+A real-time vehicle GPS tracking system that allows users to monitor vehicle
+location, view travel history, and analyze distance travelled through
+interactive dashboards.
+
+## Live Demo
+
+https://d1qd1o0gf74e2z.cloudfront.net
+
+## Features
+
+- Real-time GPS tracking
+- Vehicle travel history
+- Distance travelled reports
+- Live vehicle location map
+- Multi-device login support
+
+## Tech Stack
+
+Frontend
+
+- React
+- Redux
+- Tailwind CSS
+
+Backend
+
+- Node.js
+- Express
+
+Database
+
+- MongoDB
+
+Deployment
+
+- AWS EC2
+- AWS S3
+- CloudFront
+
+## How it Works
+
+1. User logs in from mobile device
+2. GPS coordinates are collected from the device
+3. Backend API stores location data in MongoDB
+4. Data is processed to calculate travel distance
+5. Dashboard displays vehicle route and reports
+
+## Installation
+
+Clone the repository
+
+git clone https://github.com/username/project-name
+
+Install dependencies
+
+npm install
+
+Start server
+
+npm run dev
+
+## Screenshots
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+## API Endpoints
+
+POST /api/auth/login
+POST /api/auth/register
+POST /api/auth/resetPassword
+POST /api/auth/forgotPasswordOtp
+
+## Future Improvements
+
+- AI based vehicle anomaly detection
+- Route optimization
+- Mobile application
+
+## Author
+
+Praveen K
+LinkedIn: [link](https://www.linkedin.com/in/praveen-k-devcreate)
