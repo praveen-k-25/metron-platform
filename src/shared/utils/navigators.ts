@@ -21,7 +21,7 @@ export const sidebarMain = [
     submenuList: [],
     activeList: ["dashboard"],
   },
-  {
+  /* {
     title: "analytics",
     path: "/analytics",
     icon: analytics,
@@ -29,7 +29,7 @@ export const sidebarMain = [
     submenu: false,
     submenuList: [],
     activeList: ["/analytics"],
-  },
+  }, */
   {
     title: "reports",
     path: "/reports",
@@ -109,7 +109,7 @@ export const sidebarMain = [
 ];
 
 export const sidebarFooter = [
-  {
+  /* {
     title: "settings",
     path: "/settings",
     icon: settings,
@@ -117,7 +117,7 @@ export const sidebarFooter = [
     submenu: false,
     submenuList: [],
     activeList: ["settings"],
-  },
+  }, */
   {
     title: "logout",
     path: "/logout",
