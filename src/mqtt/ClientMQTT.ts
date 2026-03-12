@@ -41,7 +41,7 @@ export default function userTracker(LoggedInUser: any) {
 
   client.on("offline", () => {
     isOnline = false;
-    toast.error("⚠️ Server offline - network issue detected");
+    toast.error("⚠️ Mqtt offline");
   });
 
   client.on("error", (err) => console.error("❌ MQTT Error:", err));
